@@ -123,6 +123,6 @@ Run the below command in the project root folder:
 <pre>
 npm start
 </pre>
-Then, open the following URL in your browser: http://localhost:4200
+Then, open the following URL in your browser: http://localhost:4009
 
 When everything works as expected, you should see your first Google Map created with AGM
