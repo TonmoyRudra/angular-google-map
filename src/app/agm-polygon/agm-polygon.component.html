@@ -1,0 +1,35 @@
+<div class="agm-container">
+  <div class="loading" *ngIf="loaderShow">Loading&#8230;</div>
+  <h1>Angular Google Maps Demo</h1>
+  <agm-map id="polygon" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false"
+  [scaleControl] = "true" [fullscreenControl] = "true"
+    (mapReady)="onMapReady($event)">
+    <!-- <agm-rectangle *ngFor="let m of rectangleBounds; let i = index"
+      [north]="m.north" [south]="m.south" [west]="m.west" [east]="m.east" [rectangleDraggable]="m.rectangleDraggable"
+      [editable]="m.editable" [clickable]="m.clickable" [strokeColor]="m.strokeColor" [strokeWeight]="m.strokeWeight"
+      [strokeOpacity]="m.strokeOpacity" [fillColor]="m.fillColor" [fillOpacity]="m.fillOpacity">
+
+    </agm-rectangle> -->
+  </agm-map>
+  <br />
+  <button mat-stroked-button color="warn" (click)="deleteAllShape()">
+    Clear All
+  </button>
+  <button style="    margin-right: 10px;" mat-stroked-button color="warn" (click)="drawFromLocalStorage()">
+    Re-Draw Last one
+  </button>
+  <!-- <div *ngIf="pointList.length > 0" class="display-flex">
+    <button mat-stroked-button color="warn" (click)="deleteSelectedShape()">
+      Clear
+    </button>
+  </div> -->
+  <!-- <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let point of pointList">
+      {{ point.lat.toPrecision(5) }},
+      {{ point.lng.toPrecision(5) }}
+    </mat-list-item>
+  </mat-list>
+  <mat-card *ngIf="selectedArea > 0">
+    <span> Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup> </span>
+  </mat-card> -->
+</div>
