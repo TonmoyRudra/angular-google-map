@@ -566,10 +566,6 @@ processDrawing(event: any, map: any){
     this.all_overLays = [];
   }
 
-  getAllMapData(){
-    console.log(this.mapServices.getMapData());
-  }
-
   drawFromLocalStorage(){
     console.log(this.mapServices.getMapData());
     var mapData = JSON.parse(this.mapServices.getMapData());
@@ -620,28 +616,6 @@ processDrawing(event: any, map: any){
     }
   }
 
-  polygonCenter(poly:any) {
-    const vertices = poly.getPath();
-
-    // put all latitudes and longitudes in arrays
-    const longitudes = new Array(vertices.length).map((_, i) => vertices.getAt(i).lng());
-    const latitudes = new Array(vertices.length).map((_, i) => vertices.getAt(i).lat());
-
-    // sort the arrays low to high
-    latitudes.sort();
-    longitudes.sort();
-
-    // get the min and max of each
-    const lowX = latitudes[0];
-    const highX = latitudes[latitudes.length - 1];
-    const lowy = longitudes[0];
-    const highy = longitudes[latitudes.length - 1];
-
-    // center of the polygon is the starting point plus the midpoint
-    const centerX = lowX + ((highX - lowX) / 2);
-    const centerY = lowy + ((highy - lowy) / 2);
-    return (new google.maps.LatLng(centerX, centerY));
-  }
 
   getAngleFrom2Point(point1: any, point2: any, markerEvent: any){
     // var dx = point1.lng() - point1.lat();
