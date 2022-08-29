@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgmPolygonComponent } from './agm-polygon.component';
+import { AgmPolygonComponent } from './asda';
 
 describe('AgmPolygonComponent', () => {
   let component: AgmPolygonComponent;

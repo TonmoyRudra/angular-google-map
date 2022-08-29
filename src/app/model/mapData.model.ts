@@ -4,6 +4,8 @@ export class RectangleBox {
   lng: number;
   height: number;
   length: number;
+  strockColor: any;
+  fillColor: any;
 }
 
 
