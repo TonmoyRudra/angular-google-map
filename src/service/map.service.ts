@@ -1,4 +1,4 @@
-import { RectangleBox } from './../app/model/mapData.model';
+import { PolygonBox, RectangleBox } from './../app/model/mapData.model';
 import { Injectable } from '@angular/core';
 import {
   map,
@@ -20,7 +20,7 @@ export class MapService {
   SERVER_URL = 'http://3.145.212.247:8020';
 
   placeslocationsApiUrl = this.SERVER_URL + '/placeslocations';
-  mapDataList: RectangleBox[] = [];
+  mapDataList: any[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -49,10 +49,11 @@ export class MapService {
 
   }
 
-  storeMapData(data: RectangleBox){
+  storeMapData(data: any){
     this.mapDataList.push(data);
     localStorage.setItem('mapData',JSON.stringify(this.mapDataList));
   }
+
 
   getMapData(){
     return JSON.parse(JSON.stringify(localStorage.getItem('mapData')));
