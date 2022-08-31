@@ -12,6 +12,18 @@
     </agm-rectangle> -->
   </agm-map>
   <br />
+<input type="text" id="selectedPolygonID" [(ngModel)]="this.storeHouse.selectedPolygonParentID" placeholder="0" />
+  <button mat-stroked-button color="warn" (click)="selectPolygonTemp()">
+    Select Polygon
+  </button>
+
+  <button mat-stroked-button color="warn" (click)="rotateLeft()">
+    Rotate Left
+  </button>
+  <button mat-stroked-button color="warn" (click)="deleteAllShape()">
+    Rotate
+  </button>
+
   <button mat-stroked-button color="warn" (click)="deleteAllShape()">
     Clear All
   </button>
