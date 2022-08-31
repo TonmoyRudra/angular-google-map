@@ -24,6 +24,16 @@ export class LatLng {
  lng: number;
 }
 
+export class StoreHouse {
+  selectedPolygon: PolygonBox;
+  selectedPolygonChildren: any =[];
+  selectedPolygonParentID: number;
 
+  constructor() { 
+    this.selectedPolygon = new PolygonBox();
+    this.selectedPolygonParentID = 0;
+ }  
+
+ }
 
 

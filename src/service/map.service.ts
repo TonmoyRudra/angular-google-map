@@ -49,9 +49,20 @@ export class MapService {
 
   }
 
-  storeMapData(data: any){
-    this.mapDataList.push(data);
+  storeMapData(polygon: any){
+// (a) Remove first if already exist
+this.mapDataList.forEach( (item, index) => {
+  if(item.id === polygon.id) this.mapDataList.splice(index,1);
+});
+
+console.log('after remove: '+ this.mapDataList.length);
+
+// (b) Add model-Polygon
+    this.mapDataList.push(polygon);
     localStorage.setItem('mapData',JSON.stringify(this.mapDataList));
+
+    console.log('after add: '+ this.mapDataList.length);
+
   }
 
 
