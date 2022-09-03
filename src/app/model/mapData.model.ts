@@ -9,7 +9,7 @@ export class RectangleBox {
 }
 
 export class PolygonBox {
-  id?: number;
+  id: number;
   pointLat: number;
   pointLng: number;
   latlng:LatLng[];
@@ -29,10 +29,10 @@ export class StoreHouse {
   selectedPolygonChildren: any =[];
   selectedPolygonParentID: number;
 
-  constructor() { 
+  constructor() {
     this.selectedPolygon = new PolygonBox();
     this.selectedPolygonParentID = 0;
- }  
+ }
 
  }
 
