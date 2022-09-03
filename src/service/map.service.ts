@@ -69,4 +69,20 @@ console.log('after remove: '+ this.mapDataList.length);
   getMapData(){
     return JSON.parse(JSON.stringify(localStorage.getItem('mapData')));
   }
+
+  getAllCatagory(){
+    return [{
+      id: 1,
+      name: 'Battalian'
+    },{
+      id: 2,
+      name: 'Company'
+    },{
+      id: 3,
+      name: 'Platoon'
+    },{
+      id: 4,
+      name: 'Sector'
+    }]
+  }
 }

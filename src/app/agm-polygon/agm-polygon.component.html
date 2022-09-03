@@ -1,6 +1,18 @@
 <div class="agm-container">
   <!-- <div class="loading" *ngIf="loaderShow">Loading&#8230;</div> -->
-  <h1>Angular Google Maps Demo</h1>
+  <h1>Google Maps Demo</h1>
+<div class="row">
+  <div class="col-4">
+    <mat-form-field appearance="fill">
+      <mat-label>*Choose an option to draw</mat-label>
+      <mat-select [(ngModel)]="selectedCatagory"  (ngModelChange)="catagorySelectionChange($event)">
+        <mat-option  *ngFor="let item of catagoryList" [value]="item.id" >{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <span *ngIf="selectedCatagory == null" style="color: red;">*Select a catagory from dropdown first.</span>
+  </div>
+</div>
   <agm-map id="polygon" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [tilt]="40"
   [scaleControl] = "true" [fullscreenControl] = "true"
     (mapReady)="onMapReady($event)">

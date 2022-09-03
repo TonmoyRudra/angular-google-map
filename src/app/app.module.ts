@@ -15,7 +15,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import { AgmPolygonComponent } from './agm-polygon/agm-polygon.component';
 import {MatTabsModule} from '@angular/material/tabs';
-
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +36,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatListModule,
     MatCardModule,
     MatChipsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -30,11 +30,33 @@ export class AgmPolygonComponent implements OnInit {
   marker2Ref: any;
   rotateDegree: any = 0;
   storeHouse: StoreHouse;
+  catagoryList: { id: number; name: string; }[];
+  selectedCatagory : any;
+  length: number;
+  height: number;
+  eachCellHeight: number;
+  eachCellLength: number;
+  companyLength: number;
+  platoonLength: number;
+  platoonHeight: number;
+  sectionLength: number;
+  companyHeight: number;
+  sectionHeight: number;
+
 //   selectedPolygon: PolygonBox; // selected Polygon to rotate and move.
 // selectedPolygonChildren: any =[];
 
   constructor(public mapServices: MapService) {
-
+    this.length = (4500 * .50); // HALF OF 4500, Because its count from center point. So length calculate twice from given value
+    this.height = (3000 * .50); // HALF OF 3000, Because its count from center point. So Height calculate twice from given value
+    this.eachCellHeight = 25.5; // Half of 51;
+    this.eachCellLength = 77.5; // Half of 155;
+    this.companyLength = (1500 * .50); // 50%  of 1500
+    this.companyHeight = (900 * .50 ); // 50%  of 900
+    this.platoonLength = (500 * .50);
+    this.platoonHeight = (300 * .50);
+    this.sectionLength = (100 * .50);
+    this.sectionHeight = (50 * .50);
   }
 
   private setCurrentPosition() {
@@ -49,6 +71,7 @@ export class AgmPolygonComponent implements OnInit {
   ngOnInit(): void {
     this.setCurrentPosition();
     this.storeHouse = new StoreHouse();
+    this.catagoryList = this.mapServices.getAllCatagory();
   }
 
   circleAdded(e: any) {
@@ -57,7 +80,7 @@ export class AgmPolygonComponent implements OnInit {
 
   onMapReady(map: any) {
     this.mapEvent = map;
-    this.initDrawingManager(map);
+    //this.initDrawingManager(map);
   }
 
   initDrawingManager = (map: google.maps.Map,) => {
@@ -189,20 +212,20 @@ export class AgmPolygonComponent implements OnInit {
     var lng = event.overlay.position.lng();
     console.log(event.overlay.position.lat(), event.overlay.position.lng());
 
-    const length = 4500 * .50; // HALF OF 4500, Because its count from center point. So length calculate twice from given value
-    const height = 3000 * .50; // HALF OF 3000, Because its count from center point. So Height calculate twice from given value
-    const eachCellHeight = 25.5; // Half of 51;
-    const eachCellLength = 77.5; // Half of 155;
-    const companyLength = (1500 * .50); // 50%  of 1500
-    const companyHeight = (900 * .50 ); // 50%  of 900
-    const platoonLength = (500 * .50);
-    const platoonHeight = (300 * .50);
-    const sectionLength = (100 * .50);
-    const sectionHeight = (50 * .50);
+    // this.length = (4500 * .50); // HALF OF 4500, Because its count from center point. So length calculate twice from given value
+    // this.height = (3000 * .50); // HALF OF 3000, Because its count from center point. So Height calculate twice from given value
+    // this.eachCellHeight = 25.5; // Half of 51;
+    // this.eachCellLength = 77.5; // Half of 155;
+    // this.companyLength = (1500 * .50); // 50%  of 1500
+    // this.companyHeight = (900 * .50 ); // 50%  of 900
+    // this.platoonLength = (500 * .50);
+    // this.platoonHeight = (300 * .50);
+    // this.sectionLength = (100 * .50);
+    // this.sectionHeight = (50 * .50);
     // test
 
-    this.makeSqareBox(map, 1000000, lat, lng, height, length, '#000000'); //battalion
-    this.getObstacleInRectangleBounds(lat, lng, height, length);
+    this.makeSqareBox(map, 1000000, lat, lng, this.height, this.length, '#000000'); //battalion
+    this.getObstacleInRectangleBounds(lat, lng, this.height, this.length);
 
     // The Cordinate logic // Tonmoy
     // top-left = +-
@@ -213,176 +236,240 @@ export class AgmPolygonComponent implements OnInit {
     //===Set :1====
     var company1_lat = lat + 0.0062;
     var company1_lng = lng - 0.0095;
-    this.makeSqareBox(map, 1010000, company1_lat, company1_lng, companyHeight,companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1010000, company1_lat, company1_lng, this.companyHeight,this.companyLength, '#1160f2'); //company-1
 
     var com1_platoon1_lat = company1_lat + 0.0017;
     var com1_platoon1_lng = company1_lng - 0.0032;
-    this.makeSqareBox(map, 1010100, com1_platoon1_lat, com1_platoon1_lng , platoonHeight, platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1010101, com1_platoon1_lat + 0.0006 , com1_platoon1_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010102, com1_platoon1_lat + 0.0006 , com1_platoon1_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010103, com1_platoon1_lat - 0.0006 , com1_platoon1_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010100, com1_platoon1_lat, com1_platoon1_lng , this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1010101, com1_platoon1_lat + 0.0006 , com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010102, com1_platoon1_lat + 0.0006 , com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010103, com1_platoon1_lat - 0.0006 , com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com1_platoon2_lat = company1_lat + 0.0017;
     var com1_platoon2_lng = company1_lng + 0.0032;
-    this.makeSqareBox(map, 1010200, com1_platoon2_lat, com1_platoon2_lng, platoonHeight, platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1010201, com1_platoon2_lat + 0.0006 , com1_platoon2_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010202, com1_platoon2_lat + 0.0006 , com1_platoon2_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010203, com1_platoon2_lat - 0.0006 , com1_platoon2_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010200, com1_platoon2_lat, com1_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1010201, com1_platoon2_lat + 0.0006 , com1_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010202, com1_platoon2_lat + 0.0006 , com1_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010203, com1_platoon2_lat - 0.0006 , com1_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com1_platoon3_lat = company1_lat - 0.0017;
     var com1_platoon3_lng = company1_lng ;
-    this.makeSqareBox(map, 1010300, com1_platoon3_lat, com1_platoon3_lng, platoonHeight, platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1010301, com1_platoon3_lat + 0.0006 , com1_platoon3_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010302, com1_platoon3_lat + 0.0006 , com1_platoon3_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010303, com1_platoon3_lat - 0.0006 , com1_platoon3_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010300, com1_platoon3_lat, com1_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1010301, com1_platoon3_lat + 0.0006 , com1_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010302, com1_platoon3_lat + 0.0006 , com1_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010303, com1_platoon3_lat - 0.0006 , com1_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 1 End===
 
     //===Set :2====
     var company2_lat = lat + 0.0062;
     var company2_lng = lng + 0.0095;
-    this.makeSqareBox(map, 1020000, company2_lat, company2_lng, companyHeight,companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1020000, company2_lat, company2_lng, this.companyHeight,this.companyLength, '#1160f2'); //company-1
 
     var com2_platoon1_lat = company2_lat + 0.0017;
     var com2_platoon1_lng = company2_lng - 0.0032;
-    this.makeSqareBox(map, 1020100, com2_platoon1_lat, com2_platoon1_lng , platoonHeight, platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1020101, com2_platoon1_lat + 0.0006 , com2_platoon1_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1020102, com2_platoon1_lat + 0.0006 , com2_platoon1_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1020103, com2_platoon1_lat - 0.0006 , com2_platoon1_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1020100, com2_platoon1_lat, com2_platoon1_lng ,this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1020101, com2_platoon1_lat + 0.0006 , com2_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1020102, com2_platoon1_lat + 0.0006 , com2_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1020103, com2_platoon1_lat - 0.0006 , com2_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com2_platoon2_lat = company2_lat + 0.0017;
     var com2_platoon2_lng = company2_lng + 0.0032;
-    this.makeSqareBox(map, 1020200, com2_platoon2_lat, com2_platoon2_lng, platoonHeight, platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1020201, com2_platoon2_lat + 0.0006 , com2_platoon2_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1020202, com2_platoon2_lat + 0.0006 , com2_platoon2_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1020203, com2_platoon2_lat - 0.0006 , com2_platoon2_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1020200, com2_platoon2_lat, com2_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1020201, com2_platoon2_lat + 0.0006 , com2_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1020202, com2_platoon2_lat + 0.0006 , com2_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1020203, com2_platoon2_lat - 0.0006 , com2_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com2_platoon3_lat = company2_lat - 0.0017;
     var com2_platoon3_lng = company2_lng ;
-    this.makeSqareBox(map, 1020300, com2_platoon3_lat, com2_platoon3_lng, platoonHeight, platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1020301, com2_platoon3_lat + 0.0006 , com2_platoon3_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1020302, com2_platoon3_lat + 0.0006 , com2_platoon3_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1020303, com2_platoon3_lat - 0.0006 , com2_platoon3_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1020300, com2_platoon3_lat, com2_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1020301, com2_platoon3_lat + 0.0006 , com2_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1020302, com2_platoon3_lat + 0.0006 , com2_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1020303, com2_platoon3_lat - 0.0006 , com2_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 2 End===
 
     //===Set :3====
     var company3_lat = lat - 0.0062;
     var company3_lng = lng - 0.0095;
-    this.makeSqareBox(map, 1030000, company3_lat, company3_lng, companyHeight,companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1030000, company3_lat, company3_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
 
     var com3_platoon1_lat = company3_lat + 0.0017;
     var com3_platoon1_lng = company3_lng - 0.0032;
-    this.makeSqareBox(map, 1030100, com3_platoon1_lat, com3_platoon1_lng , platoonHeight, platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1030101, com3_platoon1_lat + 0.0006 , com3_platoon1_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1030102, com3_platoon1_lat + 0.0006 , com3_platoon1_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1030103, com3_platoon1_lat - 0.0006 , com3_platoon1_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1030100, com3_platoon1_lat, com3_platoon1_lng , this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1030101, com3_platoon1_lat + 0.0006 , com3_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1030102, com3_platoon1_lat + 0.0006 , com3_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1030103, com3_platoon1_lat - 0.0006 , com3_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com3_platoon2_lat = company3_lat + 0.0017;
     var com3_platoon2_lng = company3_lng + 0.0032;
-    this.makeSqareBox(map, 1030200, com3_platoon2_lat, com3_platoon2_lng, platoonHeight, platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1030201, com3_platoon2_lat + 0.0006 , com3_platoon2_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1030202, com3_platoon2_lat + 0.0006 , com3_platoon2_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1030203, com3_platoon2_lat - 0.0006 , com3_platoon2_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1030200, com3_platoon2_lat, com3_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1030201, com3_platoon2_lat + 0.0006 , com3_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1030202, com3_platoon2_lat + 0.0006 , com3_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1030203, com3_platoon2_lat - 0.0006 , com3_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com3_platoon3_lat = company3_lat - 0.0017;
     var com3_platoon3_lng = company3_lng ;
-    this.makeSqareBox(map, 1030300, com3_platoon3_lat, com3_platoon3_lng, platoonHeight, platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1030301, com3_platoon3_lat + 0.0006 , com3_platoon3_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1030302, com3_platoon3_lat + 0.0006 , com3_platoon3_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1030303, com3_platoon3_lat - 0.0006 , com3_platoon3_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1030300, com3_platoon3_lat, com3_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1030301, com3_platoon3_lat + 0.0006 , com3_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1030302, com3_platoon3_lat + 0.0006 , com3_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1030303, com3_platoon3_lat - 0.0006 , com3_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 3 End===
 
     //===Set :4====
     var company4_lat = lat - 0.0062;
     var company4_lng = lng + 0.0095;
-    this.makeSqareBox(map, 1040000, company4_lat, company4_lng, companyHeight,companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1040000, company4_lat, company4_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
 
     var com4_platoon1_lat = company4_lat + 0.0017;
     var com4_platoon1_lng = company4_lng - 0.0032;
-    this.makeSqareBox(map, 1040100, com4_platoon1_lat, com4_platoon1_lng , platoonHeight, platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1040101, com4_platoon1_lat + 0.0006 , com4_platoon1_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1040102, com4_platoon1_lat + 0.0006 , com4_platoon1_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1040103, com4_platoon1_lat - 0.0006 , com4_platoon1_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1040100, com4_platoon1_lat, com4_platoon1_lng , this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1040101, com4_platoon1_lat + 0.0006 , com4_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1040102, com4_platoon1_lat + 0.0006 , com4_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1040103, com4_platoon1_lat - 0.0006 , com4_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com4_platoon2_lat = company4_lat + 0.0017;
     var com4_platoon2_lng = company4_lng + 0.0032;
-    this.makeSqareBox(map, 1040200, com4_platoon2_lat, com4_platoon2_lng, platoonHeight, platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1040201, com4_platoon2_lat + 0.0006 , com4_platoon2_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1040202, com4_platoon2_lat + 0.0006 , com4_platoon2_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1040203, com4_platoon2_lat - 0.0006 , com4_platoon2_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1040200, com4_platoon2_lat, com4_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1040201, com4_platoon2_lat + 0.0006 , com4_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1040202, com4_platoon2_lat + 0.0006 , com4_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1040203, com4_platoon2_lat - 0.0006 , com4_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com4_platoon3_lat = company4_lat - 0.0017;
     var com4_platoon3_lng = company4_lng ;
-    this.makeSqareBox(map, 1040300, com4_platoon3_lat, com4_platoon3_lng, platoonHeight, platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1040301, com4_platoon3_lat + 0.0006 , com4_platoon3_lng - 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1040302, com4_platoon3_lat + 0.0006 , com4_platoon3_lng + 0.0012, sectionHeight, sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1040303, com4_platoon3_lat - 0.0006 , com4_platoon3_lng, sectionHeight, sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1040300, com4_platoon3_lat, com4_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1040301, com4_platoon3_lat + 0.0006 , com4_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1040302, com4_platoon3_lat + 0.0006 , com4_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1040303, com4_platoon3_lat - 0.0006 , com4_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 4 End===
 
-    // var company2_lat = lat + 0.0045; // 0.0065
-    // var company2_lng = lng + 0.008; // 0.011
-    // this.makeSqareBox(map, 1020000, company2_lat, company2_lng, eachCellHeight * 27, eachCellLength * 13, '#1160f2'); //company-2
-
-    // this.makeSqareBox(map, 1020100, company2_lat + 0.003, company2_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-1
-    // this.makeSqareBox(map, 1020101, company2_lat + 0.003, company2_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1020102, company2_lat + 0.003, company2_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1020103, company2_lat + 0.003, company2_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
-
-    // this.makeSqareBox(map, 1020200, company2_lat, company2_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-2
-    // this.makeSqareBox(map, 1020201, company2_lat, company2_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1020202, company2_lat, company2_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1020203, company2_lat, company2_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
-
-    // this.makeSqareBox(map, 1020300, company2_lat - 0.003, company2_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-3
-    // this.makeSqareBox(map, 1020301, company2_lat - 0.003, company2_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1020302, company2_lat - 0.003, company2_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1020303, company2_lat - 0.003, company2_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
-
-    // var company3_lat = lat - 0.0045;
-    // var company3_lng = lng + 0.008;
-    // this.makeSqareBox(map, 1030000, company3_lat, company3_lng, eachCellHeight * 27, eachCellLength * 13, '#1160f2'); //company-3
-
-    // this.makeSqareBox(map, 1030100, company3_lat + 0.003, company3_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-1
-    // this.makeSqareBox(map, 1030101, company3_lat + 0.003, company3_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1030102, company3_lat + 0.003, company3_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1030103, company3_lat + 0.003, company3_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
-
-    // this.makeSqareBox(map, 1030200, company3_lat, company3_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-2
-    // this.makeSqareBox(map, 1030201, company3_lat, company3_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1030202, company3_lat, company3_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1030203, company3_lat, company3_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
-
-    // this.makeSqareBox(map, 1030300, company3_lat - 0.003, company3_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-3
-    // this.makeSqareBox(map, 1030301, company3_lat - 0.003, company3_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1030302, company3_lat - 0.003, company3_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1030303, company3_lat - 0.003, company3_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
-
-    // var company4_lat = lat - 0.0045;
-    // var company4_lng = lng - 0.008;
-    // this.makeSqareBox(map, 1040000, company4_lat, company4_lng, eachCellHeight * 27, eachCellLength * 13, '#1160f2'); //company-4
-
-    // this.makeSqareBox(map, 1040100, company4_lat + 0.003, company4_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-1
-    // this.makeSqareBox(map, 1040101, company4_lat + 0.003, company4_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1040102, company4_lat + 0.003, company4_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1040103, company4_lat + 0.003, company4_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
-
-    // this.makeSqareBox(map, 1040200, company4_lat, company4_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-2
-    // this.makeSqareBox(map, 1040201, company4_lat, company4_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1040202, company4_lat, company4_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1040203, company4_lat, company4_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
-
-    // this.makeSqareBox(map, 1040300, company4_lat - 0.003, company4_lng, eachCellHeight * 6, eachCellLength * 11, '#cd11f2'); //platoon-3
-    // this.makeSqareBox(map, 1040301, company4_lat - 0.003, company4_lng - 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-1
-    // this.makeSqareBox(map, 1040302, company4_lat - 0.003, company4_lng, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-2
-    // this.makeSqareBox(map, 1040303, company4_lat - 0.003, company4_lng + 0.004, eachCellHeight * 4, eachCellLength * 3, '#de0034'); //sector-3
 
     // set drawing mode null and restore
     this.drawingManager.setMap(null);
     this.initDrawingManager(this.mapEvent);
   }
+  processDrawingForCompany(event: any, map: any) {
+
+    this.all_overLays.push(event.overlay);
+    console.log("Marker Click", event)
+    var lat = event.overlay.position.lat();
+    var lng = event.overlay.position.lng();
+    console.log(event.overlay.position.lat(), event.overlay.position.lng());
+
+
+    // test
+
+    //this.makeSqareBox(map, 1000000, lat, lng, height, length, '#000000'); //battalion
+
+
+    // The Cordinate logic // Tonmoy
+    // top-left = +-
+    // top-right = ++
+    // bottom-right = -+
+    // bottom-left = --
+
+    //===Set :1====
+    var company1_lat = lat;
+    var company1_lng = lng;
+    this.makeSqareBox(map, 1010000, company1_lat, company1_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
+
+    var com1_platoon1_lat = company1_lat + 0.0017;
+    var com1_platoon1_lng = company1_lng - 0.0032;
+    this.makeSqareBox(map, 1010100, com1_platoon1_lat, com1_platoon1_lng , this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1010101, com1_platoon1_lat + 0.0006 , com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010102, com1_platoon1_lat + 0.0006 , com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010103, com1_platoon1_lat - 0.0006 , com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+
+    var com1_platoon2_lat = company1_lat + 0.0017;
+    var com1_platoon2_lng = company1_lng + 0.0032;
+    this.makeSqareBox(map, 1010200, com1_platoon2_lat, com1_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1010201, com1_platoon2_lat + 0.0006 , com1_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010202, com1_platoon2_lat + 0.0006 , com1_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010203, com1_platoon2_lat - 0.0006 , com1_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+
+
+    var com1_platoon3_lat = company1_lat - 0.0017;
+    var com1_platoon3_lng = company1_lng ;
+    this.makeSqareBox(map, 1010300, com1_platoon3_lat, com1_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1010301, com1_platoon3_lat + 0.0006 , com1_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010302, com1_platoon3_lat + 0.0006 , com1_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010303, com1_platoon3_lat - 0.0006 , com1_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    //===Set: 1 End===
+    this.getObstacleInRectangleBounds(lat, lng, this.companyHeight, this.companyLength);
+
+    // set drawing mode null and restore
+    this.drawingManager.setMap(null);
+    this.initDrawingManager(this.mapEvent);
+  }
+
+  processDrawingForPlatoon(event: any, map: any) {
+
+    this.all_overLays.push(event.overlay);
+    console.log("Marker Click", event)
+    var lat = event.overlay.position.lat();
+    var lng = event.overlay.position.lng();
+    console.log(event.overlay.position.lat(), event.overlay.position.lng());
+
+
+    // test
+
+    //this.makeSqareBox(map, 1000000, lat, lng, height, length, '#000000'); //battalion
+
+
+    // The Cordinate logic // Tonmoy
+    // top-left = +-
+    // top-right = ++
+    // bottom-right = -+
+    // bottom-left = --
+
+    //===Set :1====
+
+    var com1_platoon1_lat = lat ;
+    var com1_platoon1_lng = lng;
+    this.makeSqareBox(map, 1010100, com1_platoon1_lat, com1_platoon1_lng , this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1010101, com1_platoon1_lat + 0.0006 , com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010102, com1_platoon1_lat + 0.0006 , com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010103, com1_platoon1_lat - 0.0006 , com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.getObstacleInRectangleBounds(lat, lng, this.platoonHeight, this.platoonLength);
+
+    //===Set: 1 End===
+
+
+    // set drawing mode null and restore
+    this.drawingManager.setMap(null);
+    this.initDrawingManager(this.mapEvent);
+  }
+
+  processDrawingForSector(event: any, map: any) {
+
+    this.all_overLays.push(event.overlay);
+    console.log("Marker Click", event)
+    var lat = event.overlay.position.lat();
+    var lng = event.overlay.position.lng();
+    console.log(event.overlay.position.lat(), event.overlay.position.lng());
+
+    // The Cordinate logic // Tonmoy
+    // top-left = +-
+    // top-right = ++
+    // bottom-right = -+
+    // bottom-left = --
+
+    //===Set :1====
+    var com1_sector1_lat = lat;
+    var com1_sector1_lng = lng;
+
+    this.makeSqareBox(map, 1010101, com1_sector1_lat , com1_sector1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.getObstacleInRectangleBounds(lat, lng, this.sectionHeight, this.sectionLength);
+    //===Set: 1 End===
+
+
+    // set drawing mode null and restore
+    this.drawingManager.setMap(null);
+    this.initDrawingManager(this.mapEvent);
+  }
+
 
   makeSqareBox(map: google.maps.Map, idparam: number, lat: number, lng: number, height: number, length: number, strockColor: any, fillColor: any = "#00000000") {
     // var model: RectangleBox = {
@@ -452,7 +539,7 @@ export class AgmPolygonComponent implements OnInit {
       // var height = area/length;
 
       let contentString: any =
-      "<b>Length:</b> " + length1+ " <br> <b>Height:</b> " +height1 + " <br> <br>" +
+      "<b>Length:</b> " + length1+ " m" + " <br> <b>Height:</b> " +height1 + " m" + " <br> <br>" +
 
       "Clicked location:</b> <br>" +
       event.latLng.lat() +
@@ -540,9 +627,9 @@ export class AgmPolygonComponent implements OnInit {
     } else {
       var I1 = 0;
     }
-    for (var i = I1; i <= 360; i += step) {
-      var r1a = r1; //flop ? r1 : r3;
-      var r2a = r2 //flop ? r2 : r4;
+    for (var i = I1; i <= 360.001; i += step) {
+      var r1a = flop ? r1 : r3;
+      var r2a = flop ? r2 : r4;
       //flop = -1 - flop;
       var y = r1a * Math.cos(i * Math.PI / 180);
       var x = r2a * Math.sin(i * Math.PI / 180);
@@ -685,7 +772,7 @@ export class AgmPolygonComponent implements OnInit {
         position: markerLatLng,
         title: marker.locationName,
         icon: image,
-        lavel: marker.lat + "" + marker.lng
+        lavel:  marker.locationName,//marker.lat + "" + marker.lng
       });
 
       this.all_overLays.push(markerView); // store all for bulk delete
@@ -871,8 +958,24 @@ getChildPolygonBetweenIdRange(parentPolygonID: number,topID: number)
     this.rotateDegree = google.maps.geometry.spherical.computeHeading(point1, point2);
     console.log("marker heading", this.rotateDegree);
 
-    this.processDrawing(markerEvent, this.mapEvent);
+    // 1st delete all:
+    //this.deleteAllShape();
+    if(this.selectedCatagory == 1) this.processDrawing(markerEvent, this.mapEvent);
+    else if(this.selectedCatagory == 2)  this.processDrawingForCompany(markerEvent, this.mapEvent);
+    else if(this.selectedCatagory == 3) this.processDrawingForPlatoon(markerEvent, this.mapEvent);
+    else if(this.selectedCatagory == 4) this.processDrawingForSector(markerEvent, this.mapEvent);
+    else {
+      alert("Please select a catagory from Dropdown.")
+    }
   }
 
+  catagorySelectionChange(e : any){
+    console.log(this.selectedCatagory);
+    if(this.drawingManager) this.drawingManager.setMap(null);
+    if(e){
+      this.initDrawingManager(this.mapEvent);
+    }
+
+  }
 }
 
