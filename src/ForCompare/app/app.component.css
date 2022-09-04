@@ -1,0 +1,13 @@
+agm-map {
+  height: 500px;
+}
+.agm-container{
+  /* width: 80%; */
+  margin: auto;
+  padding:1rem 0 0 0;
+}
+.agm-container-main{
+  /* width: 80%; */
+  margin: auto;
+  padding:1rem;
+}

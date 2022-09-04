@@ -15,7 +15,7 @@ export class PolygonBox {
   latlng: LatLng[];
   height: number;
   length: number;
-  strockColor: any;
+  strokeColor: any;
   fillColor: any;
   fillOpacity: any;
   strokeOpacity: any;
