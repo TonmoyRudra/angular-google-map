@@ -46,7 +46,7 @@ export class StoreHouse {
   constructor() {
     this.selectedPolygon = new PolygonBox();
     this.selectedPolygonParentID = 0;
-    this.moveDisplacementAmount = 0.01;
+    this.moveDisplacementAmount = 0.001;
   }
 
 }
