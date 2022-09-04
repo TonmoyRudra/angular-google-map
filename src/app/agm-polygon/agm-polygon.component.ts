@@ -500,15 +500,17 @@ export class AgmPolygonComponent implements OnInit {
 
     var infoWindow: google.maps.InfoWindow;
 
-    //var rectangle: google.maps.Rectangle;
+    //var rectangle2: google.maps.Rectangle;
     var rectangle: google.maps.Polygon;
 
     var point = new google.maps.LatLng(lat, lng);
     this.rotateDegree = 0;
     rectangle = this.DrawPolygon(point, height, length, height, length, this.rotateDegree, 4, strockColor, 2, 1, fillColor, 1, {}, true, idparam);
-    //rectangle = this.DrawRectangle(point, height, length, height, length, 0, 4, strockColor, 2, 1,fillColor, 1, {}, true);
+
+    //rectangle2 = this.DrawRectangle(point, height, length, height, length, 0, 4, strockColor, 2, 1,fillColor, 1, {}, true);
     this.all_overLays.push(rectangle); // store all for bulk delete
     rectangle.setMap(map);
+    this.setImageOnDrawingItem(map, lat, lng, height, length);
     // Define an info window on the map.
     infoWindow = new google.maps.InfoWindow();
     //console.log(this.rectangleBounds);
@@ -594,6 +596,7 @@ export class AgmPolygonComponent implements OnInit {
       // infoWindow.setPosition(ne);
       // infoWindow.open(map);
     }
+
   }
 
   dragBox(e: any) {
@@ -643,7 +646,7 @@ export class AgmPolygonComponent implements OnInit {
     for (var i = I1; i <= 360.001; i += step) {
       var r1a = flop ? r1 : r3;
       var r2a = flop ? r2 : r4;
-      //flop = -1 - flop;
+      flop = -1 - flop;
       var y = r1a * Math.cos(i * Math.PI / 180);
       var x = r2a * Math.sin(i * Math.PI / 180);
       var lng = (x * Math.cos(rot) - y * Math.sin(rot)) / lngConv;
@@ -1280,7 +1283,37 @@ export class AgmPolygonComponent implements OnInit {
     });
   }
 
+  setImageOnDrawingItem(map: any, lat: number, lng:number, height:number, length: number){
+    let historicalOverlay;
 
+    var point = new google.maps.LatLng(lat, lng);
+    height = (height- (height * (30/100))); // Minus 30% from the box
+    length =  (length- (length * (30/100))); // Minus 30% from the box
+
+    var southWest_LatLng = new google.maps.LatLng(
+      google.maps.geometry.spherical.computeOffset(point, height, 180).lat(),  // South
+      google.maps.geometry.spherical.computeOffset(point, length, -90).lng()); // west);
+
+    var northEast_latlng = new google.maps.LatLng(
+      google.maps.geometry.spherical.computeOffset(point, height, 0).lat(), // North
+      google.maps.geometry.spherical.computeOffset(point, length, 90).lng());// East
+
+    var bounds = new google.maps.LatLngBounds(southWest_LatLng, northEast_latlng);
+
+
+    const imageBounds = {
+      north: bounds.toJSON().north,
+      south: bounds.toJSON().south,
+      east: bounds.toJSON().east,
+      west: bounds.toJSON().west,
+    };
+
+    historicalOverlay = new google.maps.GroundOverlay(
+      '../../assets/images/sector.png',
+      imageBounds
+    );
+    historicalOverlay.setMap(map);
+  }
 
 
 }
