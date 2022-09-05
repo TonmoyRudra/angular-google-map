@@ -10,6 +10,7 @@ export class RectangleBox {
 
 export class PolygonBox {
   id: number;
+  name: any;
   pointLat: number;
   pointLng: number;
   latlng: LatLng[];
