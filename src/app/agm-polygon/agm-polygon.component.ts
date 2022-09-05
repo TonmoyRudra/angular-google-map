@@ -559,7 +559,7 @@ export class AgmPolygonComponent implements OnInit {
     //rectangle2 = this.DrawRectangle(point, height, length, height, length, 0, 4, strockColor, 2, 1,fillColor, 1, {}, true);
     this.all_overLays.push(rectangle); // store all for bulk delete
     rectangle.setMap(map);
-    this.setImageOnDrawingItem(map, lat, lng, height, length);
+    this.setImageOnDrawingItem(idparam, map, lat, lng, height, length);
     // Define an info window on the map.
     infoWindow = new google.maps.InfoWindow();
     //console.log(this.rectangleBounds);
@@ -766,53 +766,53 @@ export class AgmPolygonComponent implements OnInit {
     }))
   }
 
-  getObstacleInRectangleBounds(lat: any, lng: any, height: any, length: any) {
-    this.loaderShow = true;
+  // getObstacleInRectangleBounds(lat: any, lng: any, height: any, length: any) {
+  //   this.loaderShow = true;
 
-    var pointLat = lat;
-    var pointLng = lng;
+  //   var pointLat = lat;
+  //   var pointLng = lng;
 
-    var point = new google.maps.LatLng(lat, lng);
-    var south_Lat = google.maps.geometry.spherical.computeOffset(point, height, 180).lat();
-    var south_Lng = google.maps.geometry.spherical.computeOffset(point, height, 180).lng();
+  //   var point = new google.maps.LatLng(lat, lng);
+  //   var south_Lat = google.maps.geometry.spherical.computeOffset(point, height, 180).lat();
+  //   var south_Lng = google.maps.geometry.spherical.computeOffset(point, height, 180).lng();
 
-    var north_Lat = google.maps.geometry.spherical.computeOffset(point, height, 0).lat();
-    var north_Lng = google.maps.geometry.spherical.computeOffset(point, height, 0).lng();
+  //   var north_Lat = google.maps.geometry.spherical.computeOffset(point, height, 0).lat();
+  //   var north_Lng = google.maps.geometry.spherical.computeOffset(point, height, 0).lng();
 
-    var west_Lat = google.maps.geometry.spherical.computeOffset(point, length, -90).lat();
-    var west_Lng = google.maps.geometry.spherical.computeOffset(point, length, -90).lng();
+  //   var west_Lat = google.maps.geometry.spherical.computeOffset(point, length, -90).lat();
+  //   var west_Lng = google.maps.geometry.spherical.computeOffset(point, length, -90).lng();
 
-    var east_Lat = google.maps.geometry.spherical.computeOffset(point, length, 90).lat();
-    var east_Lng = google.maps.geometry.spherical.computeOffset(point, length, 90).lng();
+  //   var east_Lat = google.maps.geometry.spherical.computeOffset(point, length, 90).lat();
+  //   var east_Lng = google.maps.geometry.spherical.computeOffset(point, length, 90).lng();
 
-    console.log(south_Lat, south_Lng, west_Lat, west_Lng, north_Lat, north_Lng, east_Lat, east_Lng);
+  //   console.log(south_Lat, south_Lng, west_Lat, west_Lng, north_Lat, north_Lng, east_Lat, east_Lng);
 
-    const formData = new FormData();
-    formData.append('lat', pointLat);
-    formData.append('lng', pointLng);
-    formData.append('rightupperpoint_lat', south_Lat);
-    formData.append('rightupperpoint_lng', south_Lng);
-    formData.append('upperleftpoint_lat', west_Lat);
-    formData.append('upperleftpoint_lng', west_Lng);
-    formData.append('leftdownpoint_lat', north_Lat);
-    formData.append('leftdownpoint_lng', north_Lng);
-    formData.append('downrightpoint_lat', east_Lat);
-    formData.append('downrightpoint_lng', east_Lng);
+  //   const formData = new FormData();
+  //   formData.append('lat', pointLat);
+  //   formData.append('lng', pointLng);
+  //   formData.append('rightupperpoint_lat', south_Lat);
+  //   formData.append('rightupperpoint_lng', south_Lng);
+  //   formData.append('upperleftpoint_lat', west_Lat);
+  //   formData.append('upperleftpoint_lng', west_Lng);
+  //   formData.append('leftdownpoint_lat', north_Lat);
+  //   formData.append('leftdownpoint_lng', north_Lng);
+  //   formData.append('downrightpoint_lat', east_Lat);
+  //   formData.append('downrightpoint_lng', east_Lng);
 
-    this.mapServices.getPlacesLocations(formData).subscribe((result) => {
-      console.log(result);
-      this.loaderShow = false;
-      if (result.length > 0) {
-        this.loaderShow = false;
-        this.placesMarkerList = result;
-        localStorage.setItem('placesApiCall_Data', JSON.stringify(this.placesMarkerList));
-        this.createMarker(this.placesMarkerList);
-      }
-    }, err => {
-      console.log(err)
-      this.loaderShow = false;
-    });
-  }
+  //   this.mapServices.getPlacesLocations(formData).subscribe((result) => {
+  //     console.log(result);
+  //     this.loaderShow = false;
+  //     if (result.length > 0) {
+  //       this.loaderShow = false;
+  //       this.placesMarkerList = result;
+  //       localStorage.setItem('placesApiCall_Data', JSON.stringify(this.placesMarkerList));
+  //       this.createMarker(this.placesMarkerList);
+  //     }
+  //   }, err => {
+  //     console.log(err)
+  //     this.loaderShow = false;
+  //   });
+  // }
 
   createMarker(markerList: any[]) {
     markerList.forEach(marker => {
@@ -1407,8 +1407,9 @@ export class AgmPolygonComponent implements OnInit {
     });
   }
 
-  setImageOnDrawingItem(map: any, lat: number, lng: number, height: number, length: number) {
-    let historicalOverlay;
+  setImageOnDrawingItem(idparam: number, map: any, lat: number, lng: number, height: number, length: number) {
+    let historicalOverlay: any;
+    // let defenceLeve: number = 0;
 
     var point = new google.maps.LatLng(lat, lng);
     height = (height - (height * (30 / 100))); // Minus 30% from the box
@@ -1432,8 +1433,32 @@ export class AgmPolygonComponent implements OnInit {
       west: bounds.toJSON().west,
     };
 
+    //*************** Background  ************************ */
+    let imageUrl: string = '';
+    if (idparam % 100000 == 0)  //(2) is selected Company
+    {
+      console.log('Draw - Battalion ');
+      // no image
+    }
+    else if (idparam % 10000 == 0)  //(2) is selected Company
+    {
+      console.log(' Draw - Company');
+      imageUrl = '../../assets/images/company.png';
+    }
+    else if (idparam % 100 == 0)  //(3) is selected Platon
+    {
+      console.log('Draw - Platon ');
+      imageUrl = '../../assets/images/platton.png';
+    }
+    else   //(4) is selected Section
+    {
+      console.log('Draw - Sector');
+      imageUrl = '../../assets/images/sector.png';
+    }
+
     historicalOverlay = new google.maps.GroundOverlay(
-      '../../assets/images/sector.png',
+      //'../../assets/images/sector.png',
+      imageUrl,
       imageBounds
     );
     historicalOverlay.setMap(map);
