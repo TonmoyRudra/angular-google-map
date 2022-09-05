@@ -100,14 +100,14 @@ export class AgmPolygonComponent implements OnInit {
     const windowHeight = Math.max(body.scrollHeight, body.offsetHeight,
       html.clientHeight, html.scrollHeight, html.offsetHeight);
     console.log(windowHeight);
-    var headerHeight : any;
-    headerHeight =  document.getElementById("headerPart");
-    headerHeight.style.height = (windowHeight * .25) +'px';
+    var headerHeight: any;
+    headerHeight = document.getElementById("headerPart");
+    headerHeight.style.height = (windowHeight * .25) + 'px';
 
     // main part
-    var mainpartHeight : any;
-    mainpartHeight =  document.getElementById("polygon");
-    mainpartHeight.style.height = (windowHeight * .75) +'px';
+    var mainpartHeight: any;
+    mainpartHeight = document.getElementById("polygon");
+    mainpartHeight.style.height = (windowHeight * .75) + 'px';
   }
   circleAdded(e: any) {
     console.log(e);
@@ -259,7 +259,7 @@ export class AgmPolygonComponent implements OnInit {
     // this.sectionHeight = (50 * .50);
     // test
 
-    this.makeSqareBox(map, 1000000,1, lat, lng, this.height, this.length, '#000000'); //battalion
+    this.makeSqareBox(map, 1000000, 1, lat, lng, this.height, this.length, '#000000'); //battalion
     //TODO: jafar: commented for google api - no money.
     // this.getObstacleInRectangleBounds(lat, lng, this.height, this.length);
 
@@ -272,113 +272,113 @@ export class AgmPolygonComponent implements OnInit {
     //===Set :1====
     var company1_lat = lat + 0.0062;
     var company1_lng = lng - 0.0095;
-    this.makeSqareBox(map, 1010000,1, company1_lat, company1_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1010000, 1, company1_lat, company1_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
 
     var com1_platoon1_lat = company1_lat + 0.0017;
     var com1_platoon1_lng = company1_lng - 0.0032;
-    this.makeSqareBox(map, 1010100,1, com1_platoon1_lat, com1_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1010101,1, com1_platoon1_lat + 0.0006, com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010102,2, com1_platoon1_lat + 0.0006, com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010103,3,com1_platoon1_lat - 0.0006, com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010100, 1, com1_platoon1_lat, com1_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1010101, 1, com1_platoon1_lat + 0.0006, com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010102, 2, com1_platoon1_lat + 0.0006, com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010103, 3, com1_platoon1_lat - 0.0006, com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com1_platoon2_lat = company1_lat + 0.0017;
     var com1_platoon2_lng = company1_lng + 0.0032;
-    this.makeSqareBox(map, 1010200,2, com1_platoon2_lat, com1_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1010201,1, com1_platoon2_lat + 0.0006, com1_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010202,2, com1_platoon2_lat + 0.0006, com1_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010203,3, com1_platoon2_lat - 0.0006, com1_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010200, 2, com1_platoon2_lat, com1_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1010201, 1, com1_platoon2_lat + 0.0006, com1_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010202, 2, com1_platoon2_lat + 0.0006, com1_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010203, 3, com1_platoon2_lat - 0.0006, com1_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com1_platoon3_lat = company1_lat - 0.0017;
     var com1_platoon3_lng = company1_lng;
-    this.makeSqareBox(map, 1010300,3, com1_platoon3_lat, com1_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1010301,1, com1_platoon3_lat + 0.0006, com1_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010302,2, com1_platoon3_lat + 0.0006, com1_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010303,3, com1_platoon3_lat - 0.0006, com1_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010300, 3, com1_platoon3_lat, com1_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1010301, 1, com1_platoon3_lat + 0.0006, com1_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010302, 2, com1_platoon3_lat + 0.0006, com1_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010303, 3, com1_platoon3_lat - 0.0006, com1_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 1 End===
 
     //===Set :2====
     var company2_lat = lat + 0.0062;
     var company2_lng = lng + 0.0095;
-    this.makeSqareBox(map, 1020000,2, company2_lat, company2_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1020000, 2, company2_lat, company2_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
 
     var com2_platoon1_lat = company2_lat + 0.0017;
     var com2_platoon1_lng = company2_lng - 0.0032;
-    this.makeSqareBox(map, 1020100,1, com2_platoon1_lat, com2_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1020101,1, com2_platoon1_lat + 0.0006, com2_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1020102,2, com2_platoon1_lat + 0.0006, com2_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1020103,3, com2_platoon1_lat - 0.0006, com2_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1020100, 1, com2_platoon1_lat, com2_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1020101, 1, com2_platoon1_lat + 0.0006, com2_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1020102, 2, com2_platoon1_lat + 0.0006, com2_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1020103, 3, com2_platoon1_lat - 0.0006, com2_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com2_platoon2_lat = company2_lat + 0.0017;
     var com2_platoon2_lng = company2_lng + 0.0032;
-    this.makeSqareBox(map, 1020200,2, com2_platoon2_lat, com2_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1020201,1, com2_platoon2_lat + 0.0006, com2_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1020202,2, com2_platoon2_lat + 0.0006, com2_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1020203, 3,com2_platoon2_lat - 0.0006, com2_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1020200, 2, com2_platoon2_lat, com2_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1020201, 1, com2_platoon2_lat + 0.0006, com2_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1020202, 2, com2_platoon2_lat + 0.0006, com2_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1020203, 3, com2_platoon2_lat - 0.0006, com2_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com2_platoon3_lat = company2_lat - 0.0017;
     var com2_platoon3_lng = company2_lng;
-    this.makeSqareBox(map, 1020300,3, com2_platoon3_lat, com2_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1020301,1, com2_platoon3_lat + 0.0006, com2_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1020302,2, com2_platoon3_lat + 0.0006, com2_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1020303,3, com2_platoon3_lat - 0.0006, com2_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1020300, 3, com2_platoon3_lat, com2_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1020301, 1, com2_platoon3_lat + 0.0006, com2_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1020302, 2, com2_platoon3_lat + 0.0006, com2_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1020303, 3, com2_platoon3_lat - 0.0006, com2_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 2 End===
 
     //===Set :3====
     var company3_lat = lat - 0.0062;
     var company3_lng = lng - 0.0095;
-    this.makeSqareBox(map, 1030000,3, company3_lat, company3_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1030000, 3, company3_lat, company3_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
 
     var com3_platoon1_lat = company3_lat + 0.0017;
     var com3_platoon1_lng = company3_lng - 0.0032;
-    this.makeSqareBox(map, 1030100,1, com3_platoon1_lat, com3_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1030101,1, com3_platoon1_lat + 0.0006, com3_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1030102,2, com3_platoon1_lat + 0.0006, com3_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1030103,3, com3_platoon1_lat - 0.0006, com3_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1030100, 1, com3_platoon1_lat, com3_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1030101, 1, com3_platoon1_lat + 0.0006, com3_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1030102, 2, com3_platoon1_lat + 0.0006, com3_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1030103, 3, com3_platoon1_lat - 0.0006, com3_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com3_platoon2_lat = company3_lat + 0.0017;
     var com3_platoon2_lng = company3_lng + 0.0032;
-    this.makeSqareBox(map, 1030200,2, com3_platoon2_lat, com3_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1030201,1, com3_platoon2_lat + 0.0006, com3_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1030202, 2,com3_platoon2_lat + 0.0006, com3_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1030203,3, com3_platoon2_lat - 0.0006, com3_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1030200, 2, com3_platoon2_lat, com3_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1030201, 1, com3_platoon2_lat + 0.0006, com3_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1030202, 2, com3_platoon2_lat + 0.0006, com3_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1030203, 3, com3_platoon2_lat - 0.0006, com3_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com3_platoon3_lat = company3_lat - 0.0017;
     var com3_platoon3_lng = company3_lng;
-    this.makeSqareBox(map, 1030300, 3,com3_platoon3_lat, com3_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1030301,1, com3_platoon3_lat + 0.0006, com3_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1030302,2, com3_platoon3_lat + 0.0006, com3_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1030303,3, com3_platoon3_lat - 0.0006, com3_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1030300, 3, com3_platoon3_lat, com3_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1030301, 1, com3_platoon3_lat + 0.0006, com3_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1030302, 2, com3_platoon3_lat + 0.0006, com3_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1030303, 3, com3_platoon3_lat - 0.0006, com3_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 3 End===
 
     //===Set :4====
     var company4_lat = lat - 0.0062;
     var company4_lng = lng + 0.0095;
-    this.makeSqareBox(map, 1040000,4, company4_lat, company4_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1040000, 4, company4_lat, company4_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
 
     var com4_platoon1_lat = company4_lat + 0.0017;
     var com4_platoon1_lng = company4_lng - 0.0032;
-    this.makeSqareBox(map, 1040100,1, com4_platoon1_lat, com4_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1040101, 1,com4_platoon1_lat + 0.0006, com4_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1040102, 2,com4_platoon1_lat + 0.0006, com4_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1040103,3, com4_platoon1_lat - 0.0006, com4_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1040100, 1, com4_platoon1_lat, com4_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1040101, 1, com4_platoon1_lat + 0.0006, com4_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1040102, 2, com4_platoon1_lat + 0.0006, com4_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1040103, 3, com4_platoon1_lat - 0.0006, com4_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com4_platoon2_lat = company4_lat + 0.0017;
     var com4_platoon2_lng = company4_lng + 0.0032;
-    this.makeSqareBox(map, 1040200,2, com4_platoon2_lat, com4_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1040201,1, com4_platoon2_lat + 0.0006, com4_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1040202,2, com4_platoon2_lat + 0.0006, com4_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1040203,3, com4_platoon2_lat - 0.0006, com4_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1040200, 2, com4_platoon2_lat, com4_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1040201, 1, com4_platoon2_lat + 0.0006, com4_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1040202, 2, com4_platoon2_lat + 0.0006, com4_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1040203, 3, com4_platoon2_lat - 0.0006, com4_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com4_platoon3_lat = company4_lat - 0.0017;
     var com4_platoon3_lng = company4_lng;
-    this.makeSqareBox(map, 1040300,3, com4_platoon3_lat, com4_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1040301,1, com4_platoon3_lat + 0.0006, com4_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1040302,2, com4_platoon3_lat + 0.0006, com4_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1040303,3, com4_platoon3_lat - 0.0006, com4_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1040300, 3, com4_platoon3_lat, com4_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1040301, 1, com4_platoon3_lat + 0.0006, com4_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1040302, 2, com4_platoon3_lat + 0.0006, com4_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1040303, 3, com4_platoon3_lat - 0.0006, com4_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 4 End===
 
 
@@ -413,29 +413,29 @@ export class AgmPolygonComponent implements OnInit {
     //===Set :1====
     var company1_lat = lat;
     var company1_lng = lng;
-    this.makeSqareBox(map, 1010000,1, company1_lat, company1_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
+    this.makeSqareBox(map, 1010000, 1, company1_lat, company1_lng, this.companyHeight, this.companyLength, '#1160f2'); //company-1
 
     var com1_platoon1_lat = company1_lat + 0.0017;
     var com1_platoon1_lng = company1_lng - 0.0032;
-    this.makeSqareBox(map, 1010100,1, com1_platoon1_lat, com1_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1010101,1, com1_platoon1_lat + 0.0006, com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010102,2, com1_platoon1_lat + 0.0006, com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010103,3, com1_platoon1_lat - 0.0006, com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010100, 1, com1_platoon1_lat, com1_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1010101, 1, com1_platoon1_lat + 0.0006, com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010102, 2, com1_platoon1_lat + 0.0006, com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010103, 3, com1_platoon1_lat - 0.0006, com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
     var com1_platoon2_lat = company1_lat + 0.0017;
     var com1_platoon2_lng = company1_lng + 0.0032;
-    this.makeSqareBox(map, 1010200,2, com1_platoon2_lat, com1_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
-    this.makeSqareBox(map, 1010201,1, com1_platoon2_lat + 0.0006, com1_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010202,2, com1_platoon2_lat + 0.0006, com1_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010203,3, com1_platoon2_lat - 0.0006, com1_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010200, 2, com1_platoon2_lat, com1_platoon2_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-2
+    this.makeSqareBox(map, 1010201, 1, com1_platoon2_lat + 0.0006, com1_platoon2_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010202, 2, com1_platoon2_lat + 0.0006, com1_platoon2_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010203, 3, com1_platoon2_lat - 0.0006, com1_platoon2_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
 
 
     var com1_platoon3_lat = company1_lat - 0.0017;
     var com1_platoon3_lng = company1_lng;
-    this.makeSqareBox(map, 1010300,3, com1_platoon3_lat, com1_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
-    this.makeSqareBox(map, 1010301,1, com1_platoon3_lat + 0.0006, com1_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010302,2, com1_platoon3_lat + 0.0006, com1_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010303,3, com1_platoon3_lat - 0.0006, com1_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010300, 3, com1_platoon3_lat, com1_platoon3_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-3
+    this.makeSqareBox(map, 1010301, 1, com1_platoon3_lat + 0.0006, com1_platoon3_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010302, 2, com1_platoon3_lat + 0.0006, com1_platoon3_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010303, 3, com1_platoon3_lat - 0.0006, com1_platoon3_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //===Set: 1 End===
     //TODO: jafar: google api off for money
     // this.getObstacleInRectangleBounds(lat, lng, this.companyHeight, this.companyLength);
@@ -473,10 +473,10 @@ export class AgmPolygonComponent implements OnInit {
 
     var com1_platoon1_lat = lat;
     var com1_platoon1_lng = lng;
-    this.makeSqareBox(map, 1010100,1, com1_platoon1_lat, com1_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
-    this.makeSqareBox(map, 1010101,1, com1_platoon1_lat + 0.0006, com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
-    this.makeSqareBox(map, 1010102,2, com1_platoon1_lat + 0.0006, com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
-    this.makeSqareBox(map, 1010103,3, com1_platoon1_lat - 0.0006, com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
+    this.makeSqareBox(map, 1010100, 1, com1_platoon1_lat, com1_platoon1_lng, this.platoonHeight, this.platoonLength, '#cd11f2'); //platoon-1
+    this.makeSqareBox(map, 1010101, 1, com1_platoon1_lat + 0.0006, com1_platoon1_lng - 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010102, 2, com1_platoon1_lat + 0.0006, com1_platoon1_lng + 0.0012, this.sectionHeight, this.sectionLength, '#de0034'); //sector-2
+    this.makeSqareBox(map, 1010103, 3, com1_platoon1_lat - 0.0006, com1_platoon1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-3
     //TODO: jafar: google api off for money
     //this.getObstacleInRectangleBounds(lat, lng, this.platoonHeight, this.platoonLength);
 
@@ -510,7 +510,7 @@ export class AgmPolygonComponent implements OnInit {
     var com1_sector1_lat = lat;
     var com1_sector1_lng = lng;
 
-    this.makeSqareBox(map, 1010101,1, com1_sector1_lat, com1_sector1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
+    this.makeSqareBox(map, 1010101, 1, com1_sector1_lat, com1_sector1_lng, this.sectionHeight, this.sectionLength, '#de0034'); //sector-1
     //TODO: jafar: google api off for money
     // this.getObstacleInRectangleBounds(lat, lng, this.sectionHeight, this.sectionLength);
     //===Set: 1 End===
@@ -884,11 +884,11 @@ export class AgmPolygonComponent implements OnInit {
   }
 
   rotateLeft() {
-    this.rotatePolygonGroup(this.storeHouse.selectedPolygonParentID, -10, true);
+    this.rotatePolygonGroup(this.storeHouse.selectedPolygonParentID, (-1 * this.storeHouse.rotateAmount), true);
   }
 
   rotateRight() {
-    this.rotatePolygonGroup(this.storeHouse.selectedPolygonParentID, 10, false);
+    this.rotatePolygonGroup(this.storeHouse.selectedPolygonParentID, (1 * this.storeHouse.rotateAmount), false);
   }
 
   selectChildrenPolygonAndKeepAtStoreHouse(parentPolygonID: number) {
@@ -1032,54 +1032,70 @@ export class AgmPolygonComponent implements OnInit {
     }
 
   }
-  battalionSelectionChange(e : any){
+
+  battalionSelectionChange(e: any) {
     var id = Number(e);
     this.allBattalionList = [];
     var data = JSON.parse(JSON.stringify(this.allPlatoonListConst));
-    this.allPlatoonList= data.filter((x: any) =>{
-      return  Number(x.id) > id && Number(x.id) < (10000 + id)
+    this.allPlatoonList = data.filter((x: any) => {
+      return Number(x.id) > id && Number(x.id) < (10000 + id)
     });
     console.log(this.allPlatoonList)
+    this.selectedCompanyFromDropdown = 0;
     this.selectedPlatoonFromDropdown = 0;
+    this.selectedSectorFromDropdown = 0;
     this.getSelectedPolygonID();
   }
 
-  companySelectionChange(e : any){
+  // selectedCompanyFromDropdown: any;
+  // selectedPlatoonFromDropdown: any;
+  // selectedSectorFromDropdown: any;
+  // selectedBattalionFromDropdown: any;
+
+  companySelectionChange(e: any) {
+
+    debugger;
+
     var id = Number(e);
     this.allPlatoonList = [];
     var data = JSON.parse(JSON.stringify(this.allPlatoonListConst));
-    this.allPlatoonList= data.filter((x: any) =>{
-      return  Number(x.id) > id && Number(x.id) < (10000 + id)
+    this.allPlatoonList = data.filter((x: any) => {
+      return Number(x.id) > id && Number(x.id) < (10000 + id)
     });
-    console.log(this.allPlatoonList)
+    console.log('this.allPlatoonList:  ' + this.allPlatoonList)
     this.selectedPlatoonFromDropdown = 0;
+    this.selectedSectorFromDropdown = 0;
     this.getSelectedPolygonID();
   }
 
-  platoonSelectionChange(e: any){
+  platoonSelectionChange(e: any) {
+
+    debugger;
+
     this.allSectorList = [];
     var id = Number(e);
     var data = JSON.parse(JSON.stringify(this.allSectorListConst));
-    this.allSectorList= data.filter((x: any) =>{
-      return  Number(x.id) > id && Number(x.id) < (100 + id)
+    this.allSectorList = data.filter((x: any) => {
+      return Number(x.id) > id && Number(x.id) < (100 + id)
     });
     console.log(this.allSectorList);
     this.selectedSectorFromDropdown = 0;
     this.getSelectedPolygonID();
   }
 
-  sectorSelectionChange(e: any){
+  sectorSelectionChange(e: any) {
     this.getSelectedPolygonID();
   }
 
-  getSelectedPolygonID(){
-    if(this.selectedSectorFromDropdown > 0){
+  getSelectedPolygonID() {
+    if (this.selectedSectorFromDropdown > 0) {
       this.storeHouse.selectedPolygonParentID = this.selectedSectorFromDropdown;
-    } else if(this.selectedPlatoonFromDropdown > 0){
+    } else if (this.selectedPlatoonFromDropdown > 0) {
       this.storeHouse.selectedPolygonParentID = this.selectedPlatoonFromDropdown;
-    } else {
+    } else if (this.selectedCompanyFromDropdown > 0) {
       this.storeHouse.selectedPolygonParentID = this.selectedCompanyFromDropdown;
-
+    } else {
+      this.storeHouse.selectedPolygonParentID = this.selectedBattalionFromDropdown;
     }
   }
 
@@ -1423,10 +1439,15 @@ export class AgmPolygonComponent implements OnInit {
     historicalOverlay.setMap(map);
   }
 
-  getMapData(){
-    this.allPloygonFromLocal =  JSON.parse(this.mapServices.getMapData());
+  getMapData() {
+    this.allPloygonFromLocal = JSON.parse(this.mapServices.getMapData());
     this.allBattalionList = [];
     this.allCompanyList = [];
+    this.allPlatoonList = [];
+    this.allSectorList = [];
+
+    //jafar: test
+    this.allCompanyList.push();
     this.allPlatoonList = [];
     this.allSectorList = [];
 
@@ -1435,32 +1456,32 @@ export class AgmPolygonComponent implements OnInit {
     this.allSectorListConst = [];
 
 
-    this.allPloygonFromLocal.forEach((poly : PolygonBox) => {
+    this.allPloygonFromLocal.forEach((poly: PolygonBox) => {
       if (poly.id % 1000000 == 0) //(1) is selected Battalion
-    {
-      console.log('selected Polygon:-- Battalion ');
-      this.allBattalionList.push(poly);
-      this.selectedBattalionFromDropdown = this.allBattalionList[0].id;
-      this.storeHouse.selectedPolygonParentID = this.allBattalionList[0].id;
-    }
-    else if (poly.id % 10000 == 0)  //(2) is selected Company
-    {
-      console.log('selected Polygon:-- Company ');
-      this.allCompanyList.push(poly);
-      this.allCompanyListConst.push(poly);
-    }
-    else if (poly.id % 100 == 0)  //(3) is selected Platon
-    {
-      console.log('selected Polygon:-- Platon ');
+      {
+        console.log('selected Polygon:-- Battalion ');
+        this.allBattalionList.push(poly);
+        this.selectedBattalionFromDropdown = this.allBattalionList[0].id;
+        this.storeHouse.selectedPolygonParentID = this.allBattalionList[0].id;
+      }
+      else if (poly.id % 10000 == 0)  //(2) is selected Company
+      {
+        console.log('selected Polygon:-- Company ');
+        this.allCompanyList.push(poly);
+        this.allCompanyListConst.push(poly);
+      }
+      else if (poly.id % 100 == 0)  //(3) is selected Platon
+      {
+        console.log('selected Polygon:-- Platon ');
 
-      this.allPlatoonList.push(poly);
-      this.allPlatoonListConst.push(poly);
-    }
-    else   //(4) is selected Section
-    {
-      this.allSectorList.push(poly);
-      this.allSectorListConst.push(poly);
-    }
+        this.allPlatoonList.push(poly);
+        this.allPlatoonListConst.push(poly);
+      }
+      else   //(4) is selected Section
+      {
+        this.allSectorList.push(poly);
+        this.allSectorListConst.push(poly);
+      }
     });
 
 

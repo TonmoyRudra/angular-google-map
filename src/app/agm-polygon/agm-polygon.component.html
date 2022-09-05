@@ -1,104 +1,117 @@
 <div class="container-fluid">
-
-  <div style="font-size: 27px;font-weight: bold;text-align: center;margin-top: 4px;">Defence Google Maps</div>
-  <div id="headerPart" class="actionButtonPart row">
-    <div class="col-3">
-      <div class="row" style="    margin-bottom: 7px;">
-        <div class="col-12" style=" margin-bottom: 12px; ">
-          <label>Select Catagory : </label>
-          <select style="width: 100%;" class="classic" [(ngModel)]="selectedCatagory" (ngModelChange)="catagorySelectionChange($event)">
-            <option *ngFor="let item of catagoryList" [value]="item.id">{{item.name}}</option>
-          </select>
-        </div>
-        <div class="col 1" style="padding: 0;  margin-left: 13px;">
-          <label>Battalion: </label> <br>
-          <select style="width: 100%;" class="classic" [(ngModel)]="selectedBattalionFromDropdown" (ngModelChange)="battalionSelectionChange($event)">
-            <option *ngFor="let item of allBattalionList" [value]="item.id">{{item.name}}</option>
-          </select>
-        </div>
-        <div class="col 1"  style="padding: 0;">
-          <label>Company: </label> <br>
-          <select style="width: 100%;" class="classic" [(ngModel)]="selectedCompanyFromDropdown" (ngModelChange)="companySelectionChange($event)">
-            <option *ngFor="let item of allCompanyList" [value]="item.id">{{item.name}}</option>
-          </select>
-        </div>
-        <div class="col 1"  style="padding: 0;">
-          <label>Platoon: </label> <br>
-          <select style="width: 100%;" class="classic" [(ngModel)]="selectedPlatoonFromDropdown" (ngModelChange)="platoonSelectionChange($event)">
-            <option *ngFor="let item of allPlatoonList" [value]="item.id">{{item.name}}</option>
-          </select>
-        </div>
-        <div class="col 1"  style="padding: 0;">
-          <label>Sector: </label> <br>
-          <select style="width: 100%;" class="classic" [(ngModel)]="selectedSectorFromDropdown" (ngModelChange)="sectorSelectionChange($event)">
-            <option *ngFor="let item of allSectorList" [value]="item.id">{{item.name}}</option>
-          </select>
-        </div>
+  <div style="font-size: 27px;font-weight: bold;text-align: center;margin-top: 10px;">Defence Google Maps</div>
+  <div class="row d-flex align-items-center">
+    <div class="col-md-2">
+      <label class="form-label"></label>
+      <div class="input-group mb-3">
+        <label>Select Defence Level</label>
+        <select style="width: 100%;" class="classic" [(ngModel)]="selectedCatagory" placeholder="Category"
+          (ngModelChange)="catagorySelectionChange($event)">
+          <option *ngFor="let item of catagoryList" [value]="item.id">{{item.name}}</option>
+        </select>
       </div>
-
     </div>
-    <div class="col-3"></div>
-    <div class="col-6">
-      <div style="    float: right;">
-        <div class=" vertical-middle" style="float: left;padding: 0;position: relative; top: 26px;">
-          <!-- <button mat-stroked-button color="warn" (click)="selectPolygonTemp()">
-            Select Polygon
-          </button> -->
-          <button mat-mini-fab color="warn" title="Rotate Left" (click)="rotateLeft()">
-            <mat-icon>rotate_left</mat-icon>
-          </button>
-          <button mat-mini-fab color="warn" title="Rotate Right" (click)="rotateRight()">
-            <mat-icon>rotate_right</mat-icon>
+    <div class="col-md-3 d-flex align-items-center">
+      <div class="me-1">
+        <label>Battalion: </label> <br>
+        <select style=" width: 100%;" class="classic" [(ngModel)]="selectedBattalionFromDropdown"
+          (ngModelChange)="battalionSelectionChange($event)">
+          <option *ngFor="let item of allBattalionList" [value]="item.id">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="me-1">
+        <label>Company: </label> <br>
+        <select style="width: 100%;" class="classic" [(ngModel)]="selectedCompanyFromDropdown"
+          (ngModelChange)="companySelectionChange($event)">
+          <option [value]="0">0</option>
+          <option *ngFor="let item of allCompanyList" [value]="item.id">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="me-1">
+        <label>Platoon: </label> <br>
+        <select style="width: 100%;" class="classic" [(ngModel)]="selectedPlatoonFromDropdown"
+          (ngModelChange)="platoonSelectionChange($event)">
+          <option [value]="0">0</option>
+          <option *ngFor="let item of allPlatoonList" [value]="item.id">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="me-1">
+        <label>Sector: </label> <br>
+        <select style="width: 100%;" class="classic" [(ngModel)]="selectedSectorFromDropdown"
+          (ngModelChange)="sectorSelectionChange($event)">
+          <option [value]="0">0</option>
+          <option *ngFor="let item of allSectorList" [value]="item.id">{{item.name}}</option>
+        </select>
+      </div>
+      <!-- <div>
+        <button class="btn btn-primary  mt-4 ms-2" (click)="selectPolygonTemp()">Select</button>
+      </div> -->
+      <input type="text" id="selectedPolygonID" style="display: none;"
+        [(ngModel)]="this.storeHouse.selectedPolygonParentID" placeholder="0" />
+    </div>
+    <div class="col-md-1 me-5 mt-4 rotation">
+      <div class=" d-flex">
+        <input type="text" class="form-control text-box-rotation me-1" style="width: 55px;"
+          [(ngModel)]="this.storeHouse.rotateAmount" placeholder="10">
+        <button mat-mini-fab color="warn" title="Rotate Left" (click)="rotateLeft()">
+          <mat-icon>rotate_left</mat-icon>
+        </button>
+        <button class="ms-1" mat-mini-fab color="warn" title="Rotate Right" (click)="rotateRight()">
+          <mat-icon>rotate_right</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-2 d-flex mt-5">
+      <div>
+        <input class="form-control control-text-box me-1" type="text"
+          [(ngModel)]="this.storeHouse.moveDisplacementAmount" placeholder="0.001">
+        <!-- <input type="text" id="moveDisplacementAmount" 
+         /> -->
+      </div>
+      <div class="d-flex justify-content-center">
+        <div>
+          <button style="" mat-mini-fab color="warn" title="Move Left" (click)="moveLeft()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
         </div>
-
-        <div class=" vertical-middle" style="float: left;padding: 0;">
-          <div class="col-4 vertical-middle" style="text-align: center;">
-            <button mat-mini-fab color="warn" title="Move Left" (click)="moveLeft()" style="position: relative; right: -29px; bottom: -3px;">
-              <mat-icon>keyboard_arrow_left</mat-icon>
-            </button>
-          </div>
-          <div class="col-4" style="text-align: center;padding: 0;">
-            <button mat-mini-fab color="warn" title="Move UP" (click)="moveUp()" style="
-            position: relative; bottom: -7px;">
+        <div style="margin-top: -20px;">
+          <div>
+            <button class="mb-1" mat-mini-fab color="warn" title="Move UP" (click)="moveUp()">
               <mat-icon>keyboard_arrow_up</mat-icon>
             </button>
+          </div>
+          <div>
             <button mat-mini-fab color="warn" title="Move Down" (click)="moveDown()">
               <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
           </div>
 
-          <div class="col-4 vertical-middle" style="text-align: center;"  style="position: relative; right: 14px; bottom: -3px;">
-            <button mat-mini-fab color="warn" title="Move Right" (click)="moveRight()">
-              <mat-icon>keyboard_arrow_right</mat-icon>
-            </button>
-          </div>
+
         </div>
-        <div class=" vertical-middle" style="float: left;position: relative; top: 26px;">
-          <!-- (click)="deleteAllShape()" -->
-          <button mat-mini-fab color="warn" title="Clear All Shape" >
-            <mat-icon>delete</mat-icon>
-          </button>
-          <!-- (click)="drawFromLocalStorage2()" -->
-          <button mat-mini-fab color="warn" title="Re-Draw Last one">
-            <mat-icon>sync</mat-icon>
+        <div>
+          <button mat-mini-fab color="warn" title="Move Right" (click)="moveRight()">
+            <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
       </div>
-
     </div>
-
-  <div id="mainPart">
+    <div class="col-md-2 mt-4">
+      <button class="me-1" mat-mini-fab color="warn" title="Re-Draw Last one">
+        <mat-icon>sync</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" title="Clear All Shape">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row">
     <agm-map id="polygon" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [tilt]="40"
       [scaleControl]="true" [fullscreenControl]="true" (mapReady)="onMapReady($event)">
     </agm-map>
-    <!-- <label for="selectedPolygonID">Selected Polygon</label> -->
-    <input type="text" id="selectedPolygonID" style="display: none;" [(ngModel)]="this.storeHouse.selectedPolygonParentID" placeholder="0" />
-
-    <label for="moveDisplacementAmount">Move Displacement of Polygon</label>
-    <input type="text" id="moveDisplacementAmount" [(ngModel)]="this.storeHouse.moveDisplacementAmount"
-      placeholder="0.01" />
   </div>
-  <!-- <div class="loading" *ngIf="loaderShow">Loading&#8230;</div> -->
+</div>
 
+
+
+<div id="headerPart" class="actionButtonPart row" style="display: none;">
 </div>

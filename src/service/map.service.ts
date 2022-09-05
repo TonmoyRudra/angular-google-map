@@ -79,6 +79,10 @@ export class MapService {
 
   getAllCatagory() {
     return [{
+      id: 0,
+      name: 'Select Category'
+    },
+    {
       id: 1,
       name: 'Battalian'
     }, {

@@ -40,7 +40,7 @@ export class StoreHouse {
   selectedPolygonParentID: number;
 
   moveDisplacementAmount: number;
-
+  rotateAmount: number;
   polygonStoredList: PolygonStored[] = [];
 
 
@@ -48,6 +48,7 @@ export class StoreHouse {
     this.selectedPolygon = new PolygonBox();
     this.selectedPolygonParentID = 0;
     this.moveDisplacementAmount = 0.001;
+    this.rotateAmount = 10;
   }
 
 }
