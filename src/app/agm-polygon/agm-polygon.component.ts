@@ -554,11 +554,13 @@ export class AgmPolygonComponent implements OnInit {
 
     var point = new google.maps.LatLng(lat, lng);
     this.rotateDegree = 0;
-    rectangle = this.DrawPolygon(point, height, length, height, length, this.rotateDegree, 4, strockColor, 2, 1, fillColor, 1, {}, true, idparam, nameParam);
+    rectangle = this.DrawPolygon(point, height, length, height, length, this.rotateDegree, 4, strockColor, 0, 1, fillColor, 1, {}, true, idparam, nameParam);
 
     //rectangle2 = this.DrawRectangle(point, height, length, height, length, 0, 4, strockColor, 2, 1,fillColor, 1, {}, true);
     this.all_overLays.push(rectangle); // store all for bulk delete
     rectangle.setMap(map);
+    rectangle.setEditable(false); // editor false after drawing done
+    rectangle.setDraggable(false); // editor false after drawing done
     this.setImageOnDrawingItem(idparam, map, lat, lng, height, length);
     // Define an info window on the map.
     infoWindow = new google.maps.InfoWindow();
@@ -1018,7 +1020,12 @@ export class AgmPolygonComponent implements OnInit {
 
     this.drawingManager.setOptions({
       drawingMode: null,
-      drawingControl: false
+      drawingControl: false,
+      polygonOptions: {
+        draggable: false,
+        editable: false,
+
+      },
     });
   }
 
@@ -1412,8 +1419,8 @@ export class AgmPolygonComponent implements OnInit {
     // let defenceLeve: number = 0;
 
     var point = new google.maps.LatLng(lat, lng);
-    height = (height - (height * (30 / 100))); // Minus 30% from the box
-    length = (length - (length * (30 / 100))); // Minus 30% from the box
+    height = (height - (height * (10 / 100))); // Minus 30% from the box
+    length = (length - (length * (10 / 100))); // Minus 30% from the box
 
     var southWest_LatLng = new google.maps.LatLng(
       google.maps.geometry.spherical.computeOffset(point, height, 180).lat(),  // South
